@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TopUp Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div id="loginForm" class="login-container">
+        <h1>Admin Login</h1>
+        <form id="login">
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" required>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+        <div id="loginMessage"></div>
+    </div>
+
+    <div id="adminPanel" style="display: none;">
+        <button class="logout" onclick="logout()">Logout</button>
+        <div class="container">
+            <h1>TopUp Admin Panel</h1>
+            <button class="refresh" onclick="loadRequests()">Refresh Data</button>
+            <div class="stats" id="stats">
+                <!-- Stats will be populated by JS -->
+            </div>
+            <table id="requestsTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Game ID</th>
+                        <th>Amount</th>
+                        <th>Payment</th>
+                        <th>Status</th>
+                        <th>Timestamp</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="requestsBody">
+                    <!-- Requests will be populated by JS -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>

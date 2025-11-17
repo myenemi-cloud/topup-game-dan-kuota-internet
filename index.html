@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TopUp Service</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="loginPage" class="page active">
+        <div class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <i class="fas fa-mobile-alt"></i>
+                    TopUp Service
+                </h1>
+                <p class="hero-subtitle">Top up games dan kuota data dengan mudah dan cepat!</p>
+                <div class="login-options">
+                    <button class="btn btn-client" onclick="showClientLogin()">
+                        <i class="fas fa-user"></i>
+                        Masuk sebagai Client
+                    </button>
+                    <button class="btn btn-admin" onclick="showAdminLogin()">
+                        <i class="fas fa-cog"></i>
+                        Masuk sebagai Admin
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="clientPage" class="page">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-mobile-alt"></i>
+                TopUp Service
+            </div>
+            <button class="btn btn-back" onclick="backToLogin()">
+                <i class="fas fa-arrow-left"></i>
+                Kembali
+            </button>
+        </nav>
+        <div class="container">
+            <div class="service-tabs">
+                <button class="tab-btn active" onclick="switchService('games')">
+                    <i class="fas fa-gamepad"></i>
+                    Games
+                </button>
+                <button class="tab-btn" onclick="switchService('kuota')">
+                    <i class="fas fa-wifi"></i>
+                    Kuota Data
+                </button>
+            </div>
+
+            <!-- Games Service -->
+            <div id="gamesService" class="service-content active">
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fas fa-plus-circle"></i>
+                        TopUp Game
+                    </h2>
+                    <form id="gameForm" class="service-form">
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-gamepad"></i>
+                                Pilih Game:
+                            </label>
+                            <div class="game-grid">
+                                <div class="game-option" data-game="mobile-legends">
+                                    <img src="https://logos-world.net/wp-content/uploads/2020/11/Mobile-Legends-Logo.png" alt="Mobile Legends" onerror="this.src='https://via.placeholder.com/100x100/FF6B6B/FFFFFF?text=ML'">
+                                    <span>Mobile Legends</span>
+                                </div>
+                                <div class="game-option" data-game="free-fire">
+                                    <img src="https://logos-world.net/wp-content/uploads/2020/12/Free-Fire-Logo.png" alt="Free Fire" onerror="this.src='https://via.placeholder.com/100x100/FF9500/FFFFFF?text=FF'">
+                                    <span>Free Fire</span>
+                                </div>
+                                <div class="game-option" data-game="pubg-mobile">
+                                    <img src="https://logos-world.net/wp-content/uploads/2020/12/PUBG-Mobile-Logo.png" alt="PUBG Mobile" onerror="this.src='https://via.placeholder.com/100x100/28A745/FFFFFF?text=PUBG'">
+                                    <span>PUBG Mobile</span>
+                                </div>
+                                <div class="game-option" data-game="arena-of-valor">
+                                    <img src="https://logos-world.net/wp-content/uploads/2020/12/Arena-of-Valor-Logo.png" alt="Arena of Valor" onerror="this.src='https://via.placeholder.com/100x100/6F42C1/FFFFFF?text=AOV'">
+                                    <span>Arena of Valor</span>
+                                </div>
+                                <div class="game-option" data-game="genshin-impact">
+                                    <img src="https://logos-world.net/wp-content/uploads/2020/12/Genshin-Impact-Logo.png" alt="Genshin Impact" onerror="this.src='https://via.placeholder.com/100x100/17A2B8/FFFFFF?text=GI'">
+                                    <span>Genshin Impact</span>
+                                </div>
+                            </div>
+                            <input type="hidden" id="game" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gameId">
+                                <i class="fas fa-id-card"></i>
+                                Game ID:
+                            </label>
+                            <input type="text" id="gameId" placeholder="Masukkan Game ID" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gameAmount">
+                                <i class="fas fa-coins"></i>
+                                Jumlah Diamonds:
+                            </label>
+                            <select id="gameAmount" required>
+                                <option value="">Pilih Jumlah</option>
+                                <option value="100">100 Diamonds - Rp 10,000</option>
+                                <option value="250">250 Diamonds - Rp 25,000</option>
+                                <option value="500">500 Diamonds - Rp 50,000</option>
+                                <option value="1000">1000 Diamonds - Rp 100,000</option>
+                                <option value="2500">2500 Diamonds - Rp 250,000</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="gamePayment">
+                                <i class="fas fa-credit-card"></i>
+                                Metode Pembayaran:
+                            </label>
+                            <select id="gamePayment" required>
+                                <option value="">Pilih Pembayaran</option>
+                                <option value="bank">Bank Transfer</option>
+                                <option value="ewallet">E-Wallet</option>
+                                <option value="credit">Credit Card</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Kirim Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Kuota Service -->
+            <div id="kuotaService" class="service-content">
+                <div class="card">
+                    <h2 class="card-title">
+                        <i class="fas fa-wifi"></i>
+                        TopUp Kuota Data
+                    </h2>
+                    <form id="kuotaForm" class="service-form">
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-sim-card"></i>
+                                Pilih Provider:
+                            </label>
+                            <div class="provider-grid">
+                                <div class="provider-option" data-provider="telkomsel">
+                                    <img src="https://logos-world.net/wp-content/uploads/2020/11/Telkomsel-Logo.png" alt="Telkomsel" onerror="this.src='https://via.placeholder.com/100x100/FF6B6B/FFFFFF?text=Telkomsel'">
+                                    <span>Telkomsel</span>
+                                </div>
+                                <div class="provider-option" data-provider="indosat">
+                                    <img src="https://logos-world.net/wp-content/uploads/2020/11/Indosat-Logo.png" alt="Indosat" onerror="this.src='https://via.placeholder.com/100x100/28A745/FFFFFF?text=Indosat'">
+                                    <span>Indosat</span>
+                                </div>
+                                <div class="provider-option" data-provider="xl">
+                                    <img src="https://logos-world.net/wp-content/uploads/2020/11/XL-Axiata-Logo.png" alt="XL" onerror="this.src='https://via.placeholder.com/100x100/17A2B8/FFFFFF?text=XL'">
+                                    <span>XL</span>
+                                </div>
+                                <div class="provider-option" data-provider="axis">
+                                    <img src="https://logos-world.net/wp-content/uploads/2020/11/Axis-Logo.png" alt="Axis" onerror="this.src='https://via.placeholder.com/100x100/6F42C1/FFFFFF?text=Axis'">
+                                    <span>Axis</span>
+                                </div>
+                                <div class="provider-option" data-provider="three">
+                                    <img src="https://logos-world.net/wp-content/uploads/2020/11/Three-Logo.png" alt="Three" onerror="this.src='https://via.placeholder.com/100x100/FFC107/FFFFFF?text=Three'">
+                                    <span>Three</span>
+                                </div>
+                                <div class="provider-option" data-provider="smartfren">
+                                    <img src="https://logos-world.net/wp-content/uploads/2020/11/Smartfren-Logo.png" alt="Smartfren" onerror="this.src='https://via.placeholder.com/100x100/DC3545/FFFFFF?text=Smartfren'">
+                                    <span>Smartfren</span>
+                                </div>
+                            </div>
+                            <input type="hidden" id="provider" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneNumber">
+                                <i class="fas fa-phone"></i>
+                                Nomor HP:
+                            </label>
+                            <input type="tel" id="phoneNumber" placeholder="Masukkan nomor HP (08xxxxxxxxx)" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="kuotaAmount">
+                                <i class="fas fa-wifi"></i>
+                                Paket Kuota:
+                            </label>
+                            <select id="kuotaAmount" required>
+                                <option value="">Pilih Paket</option>
+                                <option value="5gb">5GB - Rp 25,000</option>
+                                <option value="10gb">10GB - Rp 45,000</option>
+                                <option value="20gb">20GB - Rp 75,000</option>
+                                <option value="30gb">30GB - Rp 100,000</option>
+                                <option value="50gb">50GB - Rp 150,000</option>
+                                <option value="100gb">100GB - Rp 250,000</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="kuotaPayment">
+                                <i class="fas fa-credit-card"></i>
+                                Metode Pembayaran:
+                            </label>
+                            <select id="kuotaPayment" required>
+                                <option value="">Pilih Pembayaran</option>
+                                <option value="bank">Bank Transfer</option>
+                                <option value="ewallet">E-Wallet</option>
+                                <option value="credit">Credit Card</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Kirim Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="message"></div>
+        </div>
+    </div>
+
+    <div id="adminLoginPage" class="page">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-cog"></i>
+                Admin Panel
+            </div>
+            <button class="btn btn-back" onclick="backToLogin()">
+                <i class="fas fa-arrow-left"></i>
+                Kembali
+            </button>
+        </nav>
+        <div class="container">
+            <div class="card">
+                <h2 class="card-title">
+                    <i class="fas fa-lock"></i>
+                    Admin Login
+                </h2>
+                <form id="adminLoginForm">
+                    <div class="form-group">
+                        <label for="adminPassword">
+                            <i class="fas fa-key"></i>
+                            Password:
+                        </label>
+                        <input type="password" id="adminPassword" placeholder="Masukkan password admin" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </button>
+                </form>
+                <div id="adminLoginMessage"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="adminPage" class="page">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <i class="fas fa-cog"></i>
+                Admin Panel
+            </div>
+            <button class="btn btn-logout" onclick="logoutAdmin()">
+                <i class="fas fa-sign-out-alt"></i>
+                Logout
+            </button>
+        </nav>
+        <div class="container">
+            <div class="stats-grid" id="stats">
+                <!-- Stats will be populated by JS -->
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">
+                        <i class="fas fa-list"></i>
+                        TopUp Requests
+                    </h2>
+                    <button class="btn btn-refresh" onclick="loadRequests()">
+                        <i class="fas fa-sync-alt"></i>
+                        Refresh
+                    </button>
+                </div>
+                <div class="table-container">
+                    <table id="requestsTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Type</th>
+                                <th>Service</th>
+                                <th>Identifier</th>
+                                <th>Package</th>
+                                <th>Amount</th>
+                                <th>Payment</th>
+                                <th>Status</th>
+                                <th>Timestamp</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="requestsBody">
+                            <!-- Requests will be populated by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
